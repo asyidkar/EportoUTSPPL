@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>E-Portfolio Siklus 1 | Muhammad Rahman Asyidka</title>
+  <meta name="description" content="E-Portfolio Praktik Mengajar Mandiri Siklus 1 - Sistem Bilangan, SMP Negeri 1 Cimahi" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+    :root{
+      --bg:#fff8f2;
+      --paper:#fffdfb;
+      --ink:#1f2937;
+      --muted:#5f6978;
+      --line:#eee2d8;
+      --accent:#705df2;
+      --accent2:#00b8b0;
+      --accent3:#ff8b52;
+      --accent4:#ffcb3d;
+      --pink:#ff6fb5;
+      --sky:#56b8ff;
+      --dark:#131829;
+      --soft:#fff3e6;
+      --shadow:0 18px 42px rgba(73,40,18,.09);
+      --radius:24px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font:15px/1.75 'Inter',sans-serif;background:
+      radial-gradient(circle at top left, rgba(255,180,92,.20), transparent 24%),
+      radial-gradient(circle at top right, rgba(91,134,255,.16), transparent 22%),
+      linear-gradient(180deg,#fff7ee 0%, #fffdf8 34%, #ffffff 100%);color:var(--ink)}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1180px,calc(100% - 34px));margin:auto}
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(255,250,244,.86);backdrop-filter:blur(14px);border-bottom:1px solid rgba(238,226,216,.8);box-shadow:0 8px 24px rgba(0,0,0,.03)}
+    .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand .logo{width:48px;height:48px;border-radius:16px;background:#fff;box-shadow:var(--shadow);padding:7px;border:1px solid var(--line)}
+    .brand .txt b{display:block;font:700 17px 'Space Grotesk',sans-serif;letter-spacing:-.02em}
+    .brand .txt span{font-size:12px;color:var(--muted)}
+    .nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+    .nav a{padding:10px 14px;border-radius:999px;font-size:12px;font-weight:700;color:#455061;transition:.22s}
+    .nav a:hover{background:linear-gradient(135deg,#fff,#fff6ea);border-color:var(--line);box-shadow:var(--shadow);transform:translateY(-1px)}
+    .hero{padding:54px 0 28px}
+    .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:stretch}
+    .hero-card{background:
+      radial-gradient(circle at top left, rgba(255,255,255,.18), transparent 28%),
+      radial-gradient(circle at bottom right, rgba(255,210,61,.22), transparent 35%),
+      linear-gradient(135deg,#5538e2 0%,#5b8bff 45%,#00b7b0 100%);
+      color:#fff;border-radius:34px;padding:36px;position:relative;overflow:hidden;box-shadow:0 26px 60px rgba(43,47,143,.24)}
+    .hero-card:before{content:"";position:absolute;inset:auto auto -45px -45px;width:180px;height:180px;background:rgba(255,255,255,.12);border-radius:38px;transform:rotate(24deg)}
+    .hero-card:after{content:"";position:absolute;right:-46px;bottom:-50px;width:220px;height:220px;background:radial-gradient(circle,#ffffff33,transparent 62%);border-radius:50%}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:#ffffff1f;border:1px solid #ffffff2a;color:#eef7ff;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;letter-spacing:-.03em;line-height:1.15;margin:0 0 10px}
+    .hero h1{font-size:clamp(32px,5vw,58px);max-width:720px;margin-top:16px}
+    .hero p{max-width:720px;color:#edf5ff;margin:0 0 22px}
+    .hero-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+    .hero-badges span{padding:8px 12px;border-radius:12px;background:#ffffff16;border:1px solid #ffffff2b;font-size:12px;font-weight:700;backdrop-filter:blur(6px)}
+    .hero-side{display:grid;gap:18px}
+    .mini-card{background:linear-gradient(180deg,#fff,#fff8f1);border:1px solid var(--line);border-radius:28px;padding:22px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .mini-card:before{content:"";position:absolute;right:-24px;top:-24px;width:88px;height:88px;border-radius:24px;background:linear-gradient(135deg,rgba(255,203,61,.22),rgba(86,184,255,.12));transform:rotate(20deg)}
+    .mini-card.dark{background:linear-gradient(145deg,#fff,#fff7eb)}
+    .profile-box{display:grid;grid-template-columns:114px 1fr;gap:16px;align-items:center}
+    .profile-box img{width:114px;height:134px;object-fit:contain;background:linear-gradient(180deg,#f6f7ff,#eef7ff);border-radius:22px;padding:5px;border:1px solid #e7ebff}
+    .profile-box small,.meta small{display:block;color:var(--muted);font-size:12px}
+    .meta strong{display:block;font-size:14px}
+    .grid-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+    .stat{background:linear-gradient(180deg,#fff,#fffaf4);border:1px solid var(--line);border-radius:24px;padding:18px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .stat:after{content:"";position:absolute;right:-14px;bottom:-18px;width:78px;height:78px;border-radius:22px;background:linear-gradient(135deg,rgba(112,93,242,.10),rgba(255,139,82,.10));transform:rotate(18deg)}
+    .stat:nth-child(2):after{background:linear-gradient(135deg,rgba(0,184,176,.12),rgba(86,184,255,.12))}
+    .stat:nth-child(3):after{background:linear-gradient(135deg,rgba(255,203,61,.16),rgba(255,111,181,.12))}
+    .stat strong{display:block;font-size:28px;color:var(--accent)}
+    .stat span{font-size:12px;color:var(--muted);font-weight:700}
+    section{padding:28px 0}
+    .section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:18px}
+    .section-head p{margin:0;color:var(--muted);max-width:720px}
+    .panel{background:linear-gradient(180deg,#fffefc,#fff);border:1px solid var(--line);border-radius:30px;padding:28px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .panel:before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--accent),var(--sky),var(--accent2),var(--accent3))}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .feature{padding:20px;border:1px solid var(--line);background:linear-gradient(180deg,#fff,#fff8f0);border-radius:24px;box-shadow:var(--shadow)}
+    .feature .num{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:13px;background:linear-gradient(135deg,var(--accent),#8d84ff);color:#fff;font-weight:800;font-size:14px;margin-bottom:10px;box-shadow:0 10px 20px rgba(112,93,242,.25)}
+    .feature:nth-child(2) .num{background:linear-gradient(135deg,var(--accent2),var(--sky));box-shadow:0 10px 20px rgba(0,184,176,.22)}
+    .feature:nth-child(3) .num{background:linear-gradient(135deg,var(--accent3),var(--accent4));box-shadow:0 10px 20px rgba(255,139,82,.22)}
+    .feature p,.panel p,.panel li{color:#445061;margin-top:0}
+    .feature h3{font-size:18px}
+    .info-list{display:grid;grid-template-columns:140px 1fr;gap:8px 14px}
+    .info-list div{padding:11px 0;border-bottom:1px dashed var(--line)}
+    .info-list div:nth-last-child(-n+2){border-bottom:none}
+    .label{color:var(--muted);font-weight:700}
+    .school-photo{border-radius:26px;height:100%;object-fit:cover;min-height:340px;box-shadow:var(--shadow)}
+    .artifact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .artifact-card{background:#fff;border:1px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:.22s;position:relative}
+    .artifact-card:hover{transform:translateY(-4px)}
+    .artifact-card:before{content:"";position:absolute;inset:0 0 auto 0;height:8px;background:linear-gradient(90deg,var(--accent),var(--sky),var(--accent2),var(--accent3))}
+    .artifact-card img{width:100%;height:240px;object-fit:cover;background:linear-gradient(180deg,#f8f8ff,#f8fbff)}
+    .artifact-card .content{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1;background:linear-gradient(180deg,#fffefc,#fff)}
+    .artifact-card .tag{display:inline-block;align-self:flex-start;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:800;background:#f3eeff;color:#5c4ff4}
+    .artifact-card:nth-child(2) .tag,.artifact-grid:nth-of-type(2) article:nth-child(2) .tag{background:#e8fbfb;color:#00807c}
+    .artifact-card:nth-child(3) .tag,.artifact-grid:nth-of-type(2) article:nth-child(3) .tag{background:#fff3e8;color:#d6682d}
+    .artifact-card p{font-size:13px;color:var(--muted);margin:0;flex:1}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 14px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#8d84ff);color:#fff;font-weight:800;font-size:12px;border:none;box-shadow:0 12px 24px rgba(112,93,242,.22)}
+    .btn.alt{background:#fff;color:var(--dark);border:1px solid var(--line);box-shadow:none}
+    .btnrow{display:flex;gap:10px;flex-wrap:wrap}
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .gallery img{height:200px;object-fit:cover;border-radius:22px;border:1px solid var(--line);box-shadow:var(--shadow)}
+    .video-shell{background:linear-gradient(140deg,#efe6ff,#f2fcfb,#fff5ea);border:1px solid var(--line);padding:18px;border-radius:30px;box-shadow:var(--shadow)}
+    .video-frame{aspect-ratio:16/9;overflow:hidden;border-radius:20px;box-shadow:var(--shadow);background:#000}
+    .video-frame iframe{width:100%;height:100%;border:0}
+    .timeline{display:grid;gap:14px}
+    .t-item{display:grid;grid-template-columns:78px 1fr;gap:18px;align-items:start;padding:18px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,#fff,#fff8f2);box-shadow:var(--shadow)}
+    .t-item .time{padding:10px 0;border-radius:16px;background:linear-gradient(135deg,#fff2e7,#fff8ef);color:#d6682d;text-align:center;font-weight:800;font-size:13px;border:1px solid #ffe0ca}
+    .quote{padding:18px 20px;border-left:4px solid var(--accent);background:linear-gradient(135deg,#faf6ff,#f8fcff);border-radius:0 18px 18px 0;color:#4d5767}
+    .footer{padding:32px 0 42px;color:var(--muted);font-size:12px;text-align:center}
+    .pill{display:inline-block;padding:7px 11px;border-radius:999px;background:linear-gradient(135deg,#e9fffd,#f4feff);color:#0c7f7f;font-size:11px;font-weight:800;border:1px solid #d9f3f2}
+    .accent-box{background:linear-gradient(135deg,#fff8ed,#ffffff);border:1px solid var(--line);border-radius:24px;padding:20px}
+    @media (max-width: 1024px){
+      .hero-grid,.two-col,.three-col,.artifact-grid{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .grid-stats{grid-template-columns:1fr}
+    }
+    @media (max-width: 720px){
+      .container{width:min(100% - 18px, 1180px)}
+      .topbar .wrap{align-items:flex-start;flex-direction:column}
+      .nav{justify-content:flex-start}
+      .hero{padding-top:28px}
+      .hero-card,.mini-card,.panel{padding:22px}
+      .profile-box{grid-template-columns:88px 1fr}
+      .profile-box img{width:88px;height:110px}
+      .info-list{grid-template-columns:115px 1fr}
+      .gallery{grid-template-columns:1fr}
+      .artifact-card img{height:220px}
+      .t-item{grid-template-columns:1fr}
+    }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container wrap">
+      <div class="brand">
+        <img class="logo" src="assets/logo-upi.png" alt="Logo UPI" />
+        <div class="txt">
+          <b>E-Portfolio Siklus 1</b>
+          <span>Praktik Mengajar Mandiri · Sistem Bilangan</span>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#beranda">Beranda</a>
+        <a href="#profil">Profil</a>
+        <a href="#rancangan">Perencanaan</a>
+        <a href="#artefak">Artefak</a>
+        <a href="#video">Video</a>
+        <a href="#asesmen">Asesmen</a>
+        <a href="#refleksi">Refleksi</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="beranda">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <div class="eyebrow">E-Portfolio Praktik Mengajar Mandiri Siklus 1</div>
+          <h1>Sistem Bilangan yang dirancang untuk belajar aktif, konkret, dan menyenangkan.</h1>
+          <p>Website ini memuat produk rancangan/perencanaan pembelajaran terbaik dari praktik mengajar mandiri siklus 1, video pelaksanaan pembelajaran, artefak pembelajaran, analisis mendalam setiap komponen, serta refleksi profesional sebagai calon guru Informatika.</p>
+          <div class="hero-badges">
+            <span>Materi: Sistem Bilangan</span>
+            <span>Model: Discovery Learning</span>
+            <span>Kelas VIII · SMPN 1 Cimahi</span>
+          </div>
+        </div>
+        <div class="hero-side">
+          <div class="mini-card dark">
+            <div class="profile-box">
+              <img src="assets/foto-profil.png" alt="Foto Muhammad Rahman Asyidka" />
+              <div class="meta">
+                <small>Disusun oleh</small>
+                <strong>Muhammad Rahman Asyidka</strong>
+                <small>PPG Prajabatan · Informatika<br/>Universitas Pendidikan Indonesia</small>
+              </div>
+            </div>
+          </div>
+          <div class="mini-card">
+            <h3 style="margin-bottom:8px">Pengantar Singkat</h3>
+            <p style="margin:0;color:var(--muted)">Fokus portofolio ini adalah pembelajaran <b>Sistem Bilangan</b> yang memadukan media <i>Kartu Konversi</i> dan aktivitas <i>Binary Pixel Art</i> untuk membantu peserta didik memahami konversi desimal, biner, dan penerapan konsep secara visual.</p>
+          </div>
+        </div>
+      </div>
+      <div class="container grid-stats">
+        <div class="stat"><strong>1</strong><span>Modul ajar terbaik yang dipilih</span></div>
+        <div class="stat"><strong>6</strong><span>Kelompok artefak pembelajaran utama</span></div>
+        <div class="stat"><strong>3 × 35</strong><span>Alokasi waktu praktik mengajar</span></div>
+      </div>
+    </section>
+
+    <section id="profil">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Profil Guru, LPTK, dan Sekolah</h2>
+            <p>Informasi awal disajikan untuk memberi konteks pelaksanaan praktik mengajar mandiri dan lingkungan belajar tempat PPL dilaksanakan.</p>
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="panel">
+            <h3>Profil Guru</h3>
+            <div class="info-list">
+              <div class="label">Nama</div><div>Muhammad Rahman Asyidka</div>
+              <div class="label">Program</div><div>PPG Prajabatan · Pendidikan Informatika</div>
+              <div class="label">LPTK</div><div>Universitas Pendidikan Indonesia, Bandung</div>
+              <div class="label">Sekolah PPL</div><div>SMP Negeri 1 Cimahi</div>
+              <div class="label">Fokus</div><div>Pembelajaran Informatika yang mudah, aktif, dan menyenangkan</div>
+              <div class="label">Pengantar</div><div>Saya memandang pembelajaran Informatika perlu dirancang kontekstual, memberi ruang eksplorasi, dan mendorong peserta didik memahami konsep melalui pengalaman belajar langsung.</div>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Profil Kampus LPTK</h3>
+            <img src="assets/foto-kampus.jpg" alt="Kampus UPI" class="school-photo" style="min-height:280px;height:280px;object-position:center" />
+            <p style="margin-top:14px">Universitas Pendidikan Indonesia menjadi tempat saya menempuh pendidikan profesi guru dan mengembangkan kompetensi pedagogik, profesional, sosial, serta kepribadian sebagai calon guru Informatika.</p>
+            <div class="btnrow"><a class="btn alt" href="https://youtu.be/Pd4xqhqpsto?si=AYeKYQbnWKqqQTst" target="_blank" rel="noopener">Video Profil LPTK ↗</a></div>
+          </div>
+        </div>
+        <div class="two-col" style="margin-top:22px">
+          <div class="panel">
+            <h3>Profil Sekolah</h3>
+            <p>SMP Negeri 1 Cimahi menjadi lokasi praktik mengajar mandiri. Sekolah ini menjadi ruang belajar nyata bagi saya untuk merancang pembelajaran, melaksanakan proses belajar mengajar, melakukan asesmen, dan merefleksikan praktik profesional.</p>
+            <span class="pill">Lingkungan praktik: aktif, kolaboratif, dan kontekstual</span>
+            <div class="btnrow" style="margin-top:14px"><a class="btn alt" href="#artefak">Lihat Artefak Pembelajaran</a></div>
+          </div>
+          <div class="panel">
+            <img src="assets/sekolah.jpg" alt="SMP Negeri 1 Cimahi" class="school-photo" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rancangan">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Produk Rancangan / Perencanaan Pembelajaran</h2>
+            <p>Produk terbaik yang dipilih pada siklus 1 adalah modul ajar <b>Sistem Bilangan Pertemuan 7</b>. Perencanaan ini menonjol karena memanfaatkan media konkret, aktivitas penemuan, serta tugas visual yang mendorong pemahaman konsep secara bertahap.</p>
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="panel">
+            <img src="assets/cover-sistem-bilangan.png" alt="Sampul modul Sistem Bilangan" style="width:100%;max-height:460px;object-fit:contain;background:#f8fafc;border-radius:24px;border:1px solid var(--line)" />
+            <div class="btnrow" style="margin-top:16px">
+              <a class="btn" href="modul/sistem-bilangan-pertemuan-7.pdf" target="_blank" rel="noopener">Buka Modul PDF ↗</a>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Analisis Rancangan</h3>
+            <div class="timeline">
+              <div class="t-item"><div class="time">Konteks</div><div><b>Materi Berpikir Komputasional: Sistem Bilangan.</b><br/>Peserta didik dikenalkan pada bilangan desimal, biner, dan oktal sebagai dasar representasi data digital. Materi dipilih karena relevan dengan fondasi komputasi dan membutuhkan pengalaman belajar yang tidak hanya teoritis.</div></div>
+              <div class="t-item"><div class="time">Model</div><div><b>Discovery Learning.</b><br/>Rancangan memfasilitasi peserta didik menemukan pola nilai tempat 1, 2, 4, 8, dan 16 melalui Kartu Eksplorasi. Model ini selaras dengan tujuan membangun pemahaman konsep secara mandiri dan bermakna.</div></div>
+              <div class="t-item"><div class="time">Tujuan</div><div>Tujuan pembelajaran mencakup menemukan pola nilai tempat, mengonversi desimal ke biner, menerapkan hasil konversi pada <i>Binary Pixel Art</i>, serta mengidentifikasi dan memperbaiki kesalahan konversi.</div></div>
+              <div class="t-item"><div class="time">Kelebihan</div><div>Media konkret dan visual membantu konsep abstrak lebih mudah dipahami. Aktivitas kelompok juga memberi ruang kolaborasi, diskusi, dan koreksi bersama.</div></div>
+              <div class="t-item"><div class="time">Catatan</div><div>Karena alat digunakan secara bergiliran, pengelolaan waktu dan pemerataan peran peserta didik perlu menjadi perhatian agar semua siswa terlibat aktif.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="artefak">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Artefak Pembelajaran</h2>
+            <p>Setiap artefak ditampilkan dengan cover visual agar pengunjung dapat melihat bentuk produk secara langsung di halaman web, bukan hanya melalui tautan unduhan.</p>
+          </div>
+        </div>
+        <div class="artifact-grid">
+          <article class="artifact-card">
+            <img src="assets/kartu-konversi.png" alt="Cover Kartu Konversi" />
+            <div class="content">
+              <span class="tag">Media Pembelajaran</span>
+              <h3>Kartu Konversi</h3>
+              <p>Media konkret bernilai 16, 8, 4, 2, dan 1 untuk membantu peserta didik menemukan pola nilai tempat, memilih kombinasi kartu, serta membuktikan hasil konversi secara langsung.</p>
+              <div class="quote">Media ini efektif mengkonkretkan konsep abstrak bilangan biner, tetapi membutuhkan pengaturan giliran dan peran agar seluruh peserta didik terlibat.</div>
+              <a class="btn alt" href="assets/kartu-konversi.png" target="_blank" rel="noopener">Lihat Gambar ↗</a>
+            </div>
+          </article>
+          <article class="artifact-card">
+            <img src="assets/lkpd-binary.png" alt="Cover LKPD Sistem Bilangan" />
+            <div class="content">
+              <span class="tag">LKPD</span>
+              <h3>LKPD Kelompok</h3>
+              <p>LKPD memandu kegiatan menemukan pola, membentuk bilangan, mengonversi tanggal lahir ke biner, dan menyelesaikan tantangan sederhana secara berkelompok.</p>
+              <div class="quote">LKPD berperan sebagai penuntun berpikir, bukan sekadar lembar tugas. Isinya mendorong dekomposisi, pengenalan pola, dan langkah algoritmik.</div>
+              <a class="btn alt" href="assets/lkpd-binary.png" target="_blank" rel="noopener">Lihat Gambar ↗</a>
+            </div>
+          </article>
+          <article class="artifact-card">
+            <img src="assets/binary-pixel-template.png" alt="Template Binary Pixel Art" />
+            <div class="content">
+              <span class="tag">Produk Kreatif</span>
+              <h3>Binary Pixel Art</h3>
+              <p>Aktivitas visual yang meminta peserta didik mengubah kode biner menjadi nilai desimal, menentukan warna sesuai legenda, lalu membentuk karya gambar piksel.</p>
+              <div class="quote">Artefak ini memperlihatkan integrasi antara konsep, kreativitas, dan ketelitian. Penilaian tidak hanya pada gambar akhir, tetapi pada ketepatan hubungan kode, nilai, dan warna.</div>
+              <a class="btn alt" href="assets/binary-pixel-template.png" target="_blank" rel="noopener">Lihat Gambar ↗</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="section-head" style="margin-top:34px">
+          <div>
+            <h2>Hasil Kerja Peserta Didik</h2>
+            <p>Tiga contoh karya peserta didik berikut menunjukkan penerapan aturan konversi biner ke desimal dan pemilihan warna berdasarkan legenda pada lembar <i>Binary Pixel Art</i>.</p>
+          </div>
+        </div>
+        <div class="artifact-grid">
+          <article class="artifact-card">
+            <img src="assets/hasil-siswa-1.jpg" alt="Hasil kerja siswa 1" />
+            <div class="content">
+              <span class="tag">Karya Siswa 1</span>
+              <h3>Contoh Hasil Karya Kelompok</h3>
+              <p>Karya menunjukkan penerapan warna biru, merah, kuning, dan hitam yang sesuai dengan sebagian besar kode yang tertera. Hasil akhir membentuk gambar visual yang jelas.</p>
+              <a class="btn alt" href="assets/hasil-siswa-1.jpg" target="_blank" rel="noopener">Perbesar ↗</a>
+            </div>
+          </article>
+          <article class="artifact-card">
+            <img src="assets/hasil-siswa-2.jpg" alt="Hasil kerja siswa 2" />
+            <div class="content">
+              <span class="tag">Karya Siswa 2</span>
+              <h3>Ketelitian dan Koreksi</h3>
+              <p>Karya ini menampilkan pola pewarnaan yang relatif rapi dan menegaskan bahwa peserta didik telah memahami hubungan kode biner 0011, 0110, dan 1000 terhadap warna yang dipilih.</p>
+              <a class="btn alt" href="assets/hasil-siswa-2.jpg" target="_blank" rel="noopener">Perbesar ↗</a>
+            </div>
+          </article>
+          <article class="artifact-card">
+            <img src="assets/hasil-siswa-3.jpg" alt="Hasil kerja siswa 3" />
+            <div class="content">
+              <span class="tag">Karya Siswa 3</span>
+              <h3>Pemahaman Konsep dalam Produk</h3>
+              <p>Contoh ini memperlihatkan keterhubungan antara proses konversi, visualisasi, dan hasil akhir. Produk semacam ini membantu guru melihat bukti pemahaman sekaligus kreativitas peserta didik.</p>
+              <a class="btn alt" href="assets/hasil-siswa-3.jpg" target="_blank" rel="noopener">Perbesar ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="video">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Video Pelaksanaan Praktik Mengajar</h2>
+            <p>Video berikut merupakan dokumentasi pelaksanaan pembelajaran dari rancangan yang dipilih. Video ditampilkan langsung agar dapat ditonton tanpa pengaturan tautan tambahan.</p>
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="video-shell">
+            <div class="video-frame">
+              <iframe src="https://www.youtube.com/embed/hLNh0JXeOx8?rel=0" title="Video praktik mengajar Sistem Bilangan" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Analisis Pelaksanaan</h3>
+            <p>Pelaksanaan pembelajaran difokuskan pada kegiatan penemuan konsep. Guru memulai dengan pertanyaan pemantik tentang angka 0 dan 1, lalu mengarahkan peserta didik untuk menemukan hubungan nilai tempat menggunakan Kartu Konversi. Aktivitas ini memperlihatkan penerapan <i>Discovery Learning</i> yang memberi ruang pada eksplorasi dan diskusi kelompok.</p>
+            <p>Bagian penting lainnya adalah penggunaan <i>Binary Pixel Art</i> untuk menerapkan hasil konversi ke produk visual. Strategi ini membuat pembelajaran lebih menarik, memberi pengalaman langsung, dan memperkuat transfer konsep dari bilangan ke representasi visual.</p>
+            <div class="quote">Kekuatan pelaksanaan terletak pada perpaduan media konkret dan tugas kreatif. Tantangan utamanya ada pada manajemen waktu, pemerataan partisipasi kelompok, dan kebutuhan pendampingan pada siswa yang masih belum kuat di konsep nilai tempat.</div>
+          </div>
+        </div>
+        <div class="section-head" style="margin-top:28px"><div><h2>Dokumentasi Mengajar</h2><p>Foto-foto pelaksanaan pembelajaran melengkapi video dan membantu memperlihatkan situasi kelas selama praktik mengajar berlangsung.</p></div></div>
+        <div class="gallery">
+          <img src="assets/mengajar-1.jpg" alt="Dokumentasi mengajar 1" />
+          <img src="assets/mengajar-2.jpg" alt="Dokumentasi mengajar 2" />
+          <img src="assets/mengajar-3.jpg" alt="Dokumentasi mengajar 3" />
+          <img src="assets/mengajar-4.jpg" alt="Dokumentasi mengajar 4" />
+        </div>
+      </div>
+    </section>
+
+    <section id="asesmen">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Asesmen Pembelajaran</h2>
+            <p>Asesmen pada modul ini dirancang berlapis: diagnostik, formatif, dan sumatif. Komponennya tidak hanya menilai hasil akhir, tetapi juga proses berpikir dan kemampuan koreksi kesalahan.</p>
+          </div>
+        </div>
+        <div class="three-col">
+          <div class="feature">
+            <div class="num">01</div>
+            <h3>Asesmen Diagnostik</h3>
+            <p>Digunakan untuk memetakan kesiapan belajar, pengalaman awal tentang kode 0 dan 1, nilai tempat, pola kelipatan dua, serta pembagian bersisa. Hasilnya menjadi dasar pengelompokan dan bentuk dukungan awal.</p>
+          </div>
+          <div class="feature">
+            <div class="num">02</div>
+            <h3>Asesmen Formatif</h3>
+            <p>Dilakukan melalui observasi proses eksplorasi kartu, penilaian LKPD, dan penilaian Binary Pixel Art. Penekanan utamanya ada pada penalaran, ketepatan langkah, kemampuan memeriksa kesalahan, dan partisipasi.</p>
+          </div>
+          <div class="feature">
+            <div class="num">03</div>
+            <h3>Asesmen Sumatif</h3>
+            <p>Instrumen berupa 10 soal pilihan ganda dan 2 soal uraian singkat. Asesmen ini memeriksa pemahaman konsep, konversi bilangan, penerapan warna, serta analisis kesalahan secara individual.</p>
+          </div>
+        </div>
+        <div class="two-col" style="margin-top:22px">
+          <div class="panel">
+            <h3>Analisis Asesmen</h3>
+            <p>Kelebihan perangkat asesmen adalah kesesuaiannya dengan tujuan pembelajaran TP1–TP4. Instrumen tidak hanya memeriksa jawaban benar-salah, tetapi juga memberi perhatian pada alasan, langkah, verifikasi, dan perbaikan kesalahan.</p>
+            <p>Hal ini relevan dengan pembelajaran Informatika karena kemampuan berpikir komputasional bukan hanya menghasilkan jawaban, melainkan juga memahami proses dan strategi penyelesaiannya.</p>
+          </div>
+          <div class="panel accent-box">
+            <h3>Tindak Lanjut</h3>
+            <ul>
+              <li>Peserta didik yang belum menguasai nilai tempat diberi penguatan konkret dan latihan bertahap.</li>
+              <li>Peserta didik yang sudah siap dapat diberi pengayaan seperti tantangan konversi bilangan lebih besar.</li>
+              <li>Contoh hasil kerja siswa digunakan untuk memberikan umpan balik visual terhadap ketepatan kode, nilai, dan warna.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="refleksi">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Refleksi Profesional</h2>
+            <p>Bagian ini berisi refleksi terhadap model guru yang dituju, filosofi mengajar, kekuatan, kelemahan, dan rencana tindak lanjut pengembangan diri.</p>
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="panel">
+            <h3>Filosofi Mengajar</h3>
+            <p>Saya ingin menjadi guru Informatika yang membantu peserta didik merasa bahwa materi yang tampak abstrak dapat dipahami dengan cara yang sederhana, konkret, dan menyenangkan. Bagi saya, pembelajaran yang baik bukan hanya menyampaikan isi, tetapi membantu peserta didik membangun sendiri pengertiannya melalui pengalaman belajar.</p>
+            <h3 style="margin-top:18px">Model Guru yang Dituju</h3>
+            <p>Saya menargetkan diri menjadi guru yang reflektif, adaptif, dan suportif: mampu merancang pembelajaran berbasis tujuan, memanfaatkan media secara relevan, memberi umpan balik yang membangun, serta terus memperbaiki praktik berdasarkan hasil observasi dan refleksi.</p>
+          </div>
+          <div class="panel">
+            <h3>Kekuatan</h3>
+            <ul>
+              <li>Mampu merancang aktivitas yang menghubungkan konsep abstrak dengan media konkret.</li>
+              <li>Menggunakan pendekatan yang mendorong eksplorasi dan partisipasi kelompok.</li>
+              <li>Memadukan unsur kreativitas dengan tujuan pemahaman konsep.</li>
+            </ul>
+            <h3 style="margin-top:18px">Kelemahan / Tantangan</h3>
+            <ul>
+              <li>Perlu meningkatkan pengelolaan waktu ketika aktivitas praktik cukup banyak.</li>
+              <li>Perlu strategi lebih terstruktur agar semua anggota kelompok memperoleh peran aktif.</li>
+              <li>Perlu memperkaya teknik asesmen cepat untuk memantau pemahaman individual.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel" style="margin-top:22px">
+          <h3>Rencana Tindak Lanjut</h3>
+          <div class="timeline">
+            <div class="t-item"><div class="time">RTL 1</div><div>Menyusun panduan peran kelompok yang lebih jelas agar partisipasi lebih merata ketika media digunakan bergiliran.</div></div>
+            <div class="t-item"><div class="time">RTL 2</div><div>Menyederhanakan instruksi pada LKPD dan memberikan contoh singkat sebelum kegiatan inti dimulai.</div></div>
+            <div class="t-item"><div class="time">RTL 3</div><div>Mengembangkan variasi asesmen formatif cepat untuk mengecek pemahaman individual sebelum berpindah ke aktivitas berikutnya.</div></div>
+            <div class="t-item"><div class="time">RTL 4</div><div>Menggunakan rekaman video sebagai bahan refleksi untuk memperbaiki komunikasi, alokasi waktu, dan kualitas pendampingan saat pembelajaran berlangsung.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© 2026 · E-Portfolio Praktik Mengajar Mandiri Siklus 1 · Muhammad Rahman Asyidka · PPG Informatika Universitas Pendidikan Indonesia</div>
+  </footer>
+</body>
+</html>
